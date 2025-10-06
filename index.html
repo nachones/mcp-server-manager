@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Servidores MCP - MiCopiloto.es</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Gestor visual de servidores del Protocolo de Contexto de Modelo (MCP) en español">
+    <meta name="keywords" content="MCP, Model Context Protocol, servidor, gestión, inteligencia artificial, IA">
+    <meta name="author" content="MiCopiloto.es">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-title">
+                    <div class="header-logo">
+                        MCP
+                    </div>
+                    <div class="header-text">
+                        <h1>Gestor de Servidores MCP</h1>
+                        <p>Administra y configura tus servidores de Protocolo de Contexto de Modelo</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <button id="helpButton" class="help-button" aria-label="Ayuda">
+                        <span>❓</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sección de introducción estilo Mobirise -->
+        <section class="intro-section">
+            <div class="container">
+                <div class="content-wrapper">
+                    <div class="label-wrapper">
+                        <div class="label-wrap">
+                            <div class="iconfont-wrapper">
+                                <span class="mbr-iconfont">🔧</span>
+                            </div>
+                            <h3 class="mbr-label">Servidores MCP</h3>
+                        </div>
+                    </div>
+                    <div class="title-wrapper">
+                        <h2 class="mbr-section-title">Gestor de Protocolo de Contexto de Modelo</h2>
+                    </div>
+                    <div class="text-wrapper">
+                        <p class="mbr-text">Administra y configura tus servidores MCP con una interfaz moderna y elegante. Activa, desactiva y configura servidores con facilidad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls -->
+        <section class="controls-section">
+            <div class="controls-container">
+                <div class="search-controls">
+                    <div class="search-box">
+                        <input type="text" id="searchFilter" placeholder="Buscar servidores..." aria-label="Buscar servidores">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <select id="categoryFilter" aria-label="Filtrar por categoría">
+                        <option value="">Todas las categorías</option>
+                        <option value="reference">📚 Servidores de Referencia</option>
+                        <option value="official">🏢 Integraciones Oficiales</option>
+                        <option value="third-party">🔗 Servidores de Terceros</option>
+                    </select>
+                    <select id="statusFilter" aria-label="Filtrar por estado">
+                        <option value="">Todos los estados</option>
+                        <option value="active">🟢 Activos</option>
+                        <option value="inactive">🔴 Inactivos</option>
+                    </select>
+                </div>
+                <div class="action-buttons">
+                    <button id="activateAll" class="btn btn-success">⚡ Activar Todos</button>
+                    <button id="deactivateAll" class="btn btn-danger">⏹️ Desactivar Todos</button>
+                    <button id="exportConfig" class="btn btn-secondary">💾 Exportar Config</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="stats-section">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="totalServers">0</span>
+                        <span class="stat-label">Total Servidores</span>
+                    </div>
+                </div>
+                <div class="stat-card active">
+                    <div class="stat-icon">🟢</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="activeServers">0</span>
+                        <span class="stat-label">Activos</span>
+                    </div>
+                </div>
+                <div class="stat-card reference">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="referenceServers">0</span>
+                        <span class="stat-label">Referencia</span>
+                    </div>
+                </div>
+                <div class="stat-card official">
+                    <div class="stat-icon">🏢</div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="officialServers">0</span>
+                        <span class="stat-label">Oficiales</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Server Grid -->
+        <main class="main-content">
+            <div id="serverGrid" class="server-grid">
+                <!-- Los servidores se cargarán dinámicamente aquí -->
+            </div>
+            
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>Cargando servidores...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-icon">🔍</div>
+                <h3>No se encontraron servidores</h3>
+                <p>Prueba ajustando los filtros de búsqueda</p>
+            </div>
+        </main>
+
+        <!-- Server Detail Modal -->
+        <div id="serverModal" class="modal" style="display: none;" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle"></h2>
+                    <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                    <!-- Contenido dinámico -->
+                </div>
+                <div class="modal-footer">
+                    <button id="modalActivateBtn" class="btn btn-primary">Activar Servidor</button>
+                    <button id="modalConfigBtn" class="btn btn-secondary">⚙️ Configurar</button>
+                    <button class="btn btn-tertiary modal-close">Cerrar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Modal -->
+        <div id="helpModal" class="modal" style="display: none;" role="dialog" aria-labelledby="helpTitle" aria-hidden="true">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="helpTitle">💡 Ayuda - Gestor MCP</h2>
+                    <button class="modal-close" aria-label="Cerrar ayuda">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="help-content">
+                        <h3>🎯 ¿Qué son los servidores MCP?</h3>
+                        <p>Los servidores MCP (Model Context Protocol) extienden las capacidades de Claude Desktop y otros clientes de IA mediante herramientas especializadas, recursos y prompts.</p>
+                        
+                        <h3>🚀 Cómo usar este gestor</h3>
+                        <ul>
+                            <li><strong>Activar servidores:</strong> Haz clic en el interruptor de cualquier servidor</li>
+                            <li><strong>Ver detalles:</strong> Haz clic en la tarjeta del servidor</li>
+                            <li><strong>Buscar:</strong> Usa la barra de búsqueda para filtrar por nombre o descripción</li>
+                            <li><strong>Filtrar:</strong> Usa los selectores para filtrar por categoría o estado</li>
+                        </ul>
+
+                        <h3>📂 Categorías de servidores</h3>
+                        <ul>
+                            <li><strong>📚 Referencia:</strong> Servidores de ejemplo y desarrollo</li>
+                            <li><strong>🏢 Oficiales:</strong> Integraciones con servicios populares</li>
+                            <li><strong>🔗 Terceros:</strong> Servidores de la comunidad</li>
+                        </ul>
+
+                        <h3>⚙️ Configuración</h3>
+                        <p>Usa el botón "Exportar Config" para guardar tu configuración actual de servidores activos.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary modal-close">Entendido</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Container -->
+        <div id="notifications" class="notifications-container"></div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 MiCopiloto.es - Gestor de Servidores MCP</p>
+                <div class="footer-links">
+                    <a href="#" onclick="showHelp()">Ayuda</a>
+                    <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">Documentación MCP</a>
+                    <a href="mailto:contacto@micopiloto.es">Contacto</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+</body>
+</html>
