@@ -1,0 +1,76 @@
+{
+  "name": "mcp-server-manager",
+  "version": "1.0.0",
+  "description": "Gestor visual de servidores MCP (Model Context Protocol) en español para Claude Desktop",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server --port=3000 --open=/",
+    "build": "echo 'No build step required for static app'",
+    "deploy": "gh-pages -d .",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting configured'",
+    "format": "prettier --write \"**/*.{html,css,js,json,md}\""
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "desktop",
+    "server",
+    "manager",
+    "spanish",
+    "español",
+    "micopiloto",
+    "ai",
+    "assistant",
+    "configuration",
+    "visual",
+    "web-app"
+  ],
+  "author": {
+    "name": "Micopiloto.es",
+    "email": "nachones@me.com",
+    "url": "https://micopiloto.es"
+  },
+  "license": "MIT",
+  "homepage": "https://nachones.github.io/mcp-server-manager",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nachones/mcp-server-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nachones/mcp-server-manager/issues"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "live-server": "^1.2.2",
+    "gh-pages": "^6.0.0",
+    "prettier": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "files": [
+    "index.html",
+    "404.html",
+    "css/",
+    "js/",
+    "assets/",
+    "docs/",
+    ".htaccess"
+  ],
+  "config": {
+    "port": 3000
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/nachones"
+  }
+}
